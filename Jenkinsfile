@@ -19,10 +19,11 @@ pipeline {
                 sh 'npm run build'
             }
         }
-        stage('Deploy') {
+        stage('Deploy to Nginx') {
             steps {
-                // 示例：使用 scp 上传打包文件到服务器
-                sh 'scp -r dist/* user@server:/var/www/html/'
+                sh '''
+                scp -r dist/* deploy@47.121.214.103:/www/server/nginx/html/
+                '''
             }
         }
     }
